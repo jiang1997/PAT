@@ -100,14 +100,5 @@ int main() {
 		}
 	}
 
-/*
-		int *major_idx_arry[] = {A_idx, C_idx, M_idx, E_idx};
-		int id = 310105; 
-		for(int t = 0; t < 4; ++t) {
-			int tmp = getRank(major_idx_arry[t], N, id, t);
-			cout << tmp << endl;
-		}
-*/
-
 	return 0;
 }
