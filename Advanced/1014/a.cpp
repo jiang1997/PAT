@@ -9,8 +9,10 @@ class Customer {
 public:
 	int rest;
 	int finish;
+    int time;
 	Customer(int r):rest(r) {
 		finish = 0;
+        time = r;
 	}
 };
 
@@ -41,9 +43,10 @@ int main() {
 		}
 	}
 
-	while(hasCus(cus)) {
+	for(int k = 0; k < K; ++k) {
 		// find the min
 		// subtract the min for each line
+
 		int min = 0;
 		for(int n = 0; n < N; ++n) { //check all the que's front
 			if(cus_ques[n].empty()) continue;
@@ -79,7 +82,7 @@ int main() {
 		int hh, mm;
 		hh = cus[n].finish / 60;
 		mm = cus[n].finish % 60;
-		if(cus[n].finish > 540) {
+		if(cus[n].finish - cus[n].time >= 540) {
 			printf("Sorry\n");
 		} else {
 			printf("%02d:%02d\n", hh+8, mm);
