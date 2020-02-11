@@ -34,20 +34,8 @@ public:
 		}
 
 	}
-/*
-	int operator - (const Time &t2) {
-		int sum;
-		sum += (dd - t2.dd);
-	}
-*/
+
 };
-/*
-bool Time_cmp(Time &t1, Time &t2) {
-	if(t1.dd != t2.dd) return t1.dd < t2.dd;
-	if(t1.hh != t2.hh) return t1.hh < t2.hh;
-	return t1.mm < t2.mm;
-}
-*/
 
 class Records {
 public:
@@ -74,15 +62,22 @@ int main() {
 		cin >> flag;
 		cus[name].lines.insert(Time(month, dd, hh, mm, flag));
 	}
-/*	
+	
 	for(auto iterator = cus.begin(); iterator != cus.end(); ++iterator) {
+		bool exist = false;
 		string name = (*iterator).first;
 		auto pre_it = cus[name].lines.begin();
-		cout << name;
-		printf(" %02d\n", month);
+		//printf("%s", name.c_str());
+		//printf(" %02d\n", month);
 		double total = 0;
 		for(auto it = cus[name].lines.begin(); it != cus[name].lines.end(); ++it) {
-			if((*it).flag == "off-line" && it != cus[name].lines.begin()) {
+			if((*it).flag == "off-line" && (*pre_it).flag== "on-line") {
+				if(exist == false) {
+					exist = true;
+					printf("%s", name.c_str());
+					printf(" %02d\n", month);
+				}
+
 				double sum = 0;
 				int count = 0;
 				Time t1 = *pre_it;
@@ -96,21 +91,15 @@ int main() {
 				total += sum;
 				printf("%02d:%02d:%02d ", (*pre_it).dd, (*pre_it).hh, (*pre_it).mm);
 				printf("%02d:%02d:%02d", (*it).dd, (*it).hh, (*it).mm);
-				//cout << (*pre_it).dd << ":" << (*pre_it).hh << ":" << (*pre_it).mm << " " << (*pre_it).flag  << endl;
-				//cout << (*it).dd << ":" << (*it).hh << ":" << (*it).mm << " " << (*it).flag  << endl;
 
-				printf(" %d $%.2lf\n", count, sum);
-				pre_it = it;
-				++pre_it;
-				cus[name].lines.erase(cus[name].lines.begin(), pre_it);
-			} else {
-				pre_it = it;
+				printf(" %d $%0.2lf\n", count, sum);
 			}
+			pre_it = it;
 		}
-			printf("Total amount: $%.2lf\n", total);
+			if(exist) printf("Total amount: $%.2lf\n", total);
 	}
-*/
 
+/*
 	cout << cus.size() << endl;	
 	for(auto iterator = cus.begin(); iterator != cus.end(); ++iterator) {
 		string name = (*iterator).first;
@@ -119,6 +108,6 @@ int main() {
 			cout << (*it).month << ":" << (*it).dd << ":" << (*it).hh << ":" << (*it).mm << " " << (*it).flag  << endl;
 		}
 	}
-
+*/
 	return 0;
 }
